@@ -1,20 +1,16 @@
-public class Solver {
+class Solver {
     private char[][] result;
     private Position start, end;
     private int[][] maze;
 
-    public Solver(int[][] maze, Position start, Position end) {
+    Solver(int[][] maze, Position start, Position end) {
         this.maze = maze;
         this.start = start;
         this.end = end;
         result = new char[maze.length][maze[0].length];
     }
 
-    public char[][] getResult() {
-        return result;
-    }
-
-    public char solver() {
+    char solver() {
         result[start.getX()][start.getY()] = 'S';
         result[end.getX()][end.getY()] = 'E';
         for (int i = 0; i < maze.length; i++)
@@ -22,7 +18,7 @@ public class Solver {
                 if (maze[i][j] == 1)
                     result[i][j] = '#';
 
-            char succ = path_finder(maze, start);
+        char succ = path_finder(maze, start);
 
         for (int i = 0; i < maze.length; i++)
             for (int j = 0; j < maze[i].length; j++)
@@ -34,7 +30,7 @@ public class Solver {
         return succ;
     }
 
-    public void print_result() {
+    void print_result() {
         for (int i = 0; i < result.length; i++) {
             for (int j = 0; j < result[i].length; j++) {
                 System.out.print(result[i][j] + " ");
@@ -44,10 +40,11 @@ public class Solver {
         System.out.println();
     }
 
+
     private char path_finder(int[][] maze, Position pos) {
 
         if (result[pos.getY()][pos.getX()] == 'E')
-            return 'X';    //Found the end.
+            return 'X';
         else {
             char c = 0;
             result[pos.getY()][pos.getX()] = 'V';
